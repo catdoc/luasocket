@@ -13,6 +13,10 @@
 #define LUASOCKET_VERSION    "LuaSocket 3.0-rc1"
 #define LUASOCKET_COPYRIGHT  "Copyright (C) 1999-2013 Diego Nehab"
 
+#ifndef OF_LUA_CPP
+#define OF_LUA_CPP 1
+#endif
+
 /*-------------------------------------------------------------------------*\
 * This macro prefixes all exported API functions
 \*-------------------------------------------------------------------------*/
@@ -31,6 +35,9 @@
 /*-------------------------------------------------------------------------*\
 * Initializes the library.
 \*-------------------------------------------------------------------------*/
-LUASOCKET_API int luaopen_socket_core(lua_State *L);
+
+extern "C" {
+    LUASOCKET_API int luaopen_socket_core(lua_State *L);
+}
 
 #endif /* LUASOCKET_H */

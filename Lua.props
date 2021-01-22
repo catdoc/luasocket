@@ -9,7 +9,7 @@
   </PropertyGroup>
   <PropertyGroup Label="UserMacros">
     <LUAV>5.3</LUAV>
-    <LUAPREFIX>z:\data\build\vc14\</LUAPREFIX>
+    <LUAPREFIX>E:\orangefilter\orangefilter\msvs2017_2\Debug\</LUAPREFIX>
     <LUALIB>$(LUAPREFIX)\lib\lua\$(LUAV)\$(LUAPLAT)</LUALIB>
     <LUACDIR>$(LUAPREFIX)\bin\lua\$(LUAV)\$(LUAPLAT)</LUACDIR>
     <LUALDIR>$(LUAPREFIX)\bin\lua\$(LUAV)\$(LUAPLAT)\lua</LUALDIR>

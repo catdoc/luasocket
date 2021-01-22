@@ -19,22 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\auxiliar.c" />
-    <ClCompile Include="src\buffer.c" />
-    <ClCompile Include="src\except.c" />
-    <ClCompile Include="src\inet.c" />
-    <ClCompile Include="src\io.c" />
-    <ClCompile Include="src\luasocket.c" />
-    <ClCompile Include="src\options.c" />
-    <ClCompile Include="src\select.c" />
-    <ClCompile Include="src\tcp.c" />
-    <ClCompile Include="src\timeout.c" />
-    <ClCompile Include="src\udp.c" />
-    <ClCompile Include="src\wsocket.c" />
+    <ClCompile Include="src\auxiliar.cpp" />
+    <ClCompile Include="src\buffer.cpp" />
+    <ClCompile Include="src\except.cpp" />
+    <ClCompile Include="src\inet.cpp" />
+    <ClCompile Include="src\io.cpp" />
+    <ClCompile Include="src\luasocket.cpp" />
+    <ClCompile Include="src\options.cpp" />
+    <ClCompile Include="src\select.cpp" />
+    <ClCompile Include="src\tcp.cpp" />
+    <ClCompile Include="src\timeout.cpp" />
+    <ClCompile Include="src\udp.cpp" />
+    <ClCompile Include="src\wsocket.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\lua.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{66E3CE14-884D-4AEA-9F20-15A0BEAF8C5A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -63,22 +67,22 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="Lua.props" />
+    <!-- <Import Project="Lua.props" /> -->
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="Lua.props" />
+    <!-- <Import Project="Lua.props" /> -->
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="Lua.props" />
+    <!-- <Import Project="Lua.props" /> -->
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="Lua.props" />
+    <!-- <Import Project="Lua.props" /> -->
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -99,7 +103,9 @@
     <OutDir>$(Configuration)\socket\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>core</TargetName>
+    <TargetName>socket</TargetName>
+    <IncludePath>E:\orangefilter\orangefilter\src\orangefilter\lua\;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\orangefilter\orangefilter\msvs2017_2\Debug\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -161,18 +167,20 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(LUAINC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LUASOCKET_API=__declspec(dllexport);_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\orangefilter\orangefilter\src\orangefilter\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LUASOCKET_API=__declspec(dllexport);_CRT_SECURE_NO_WARNINGS;OF_LUA_CPP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat />
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AdditionalOptions> /FS %(AdditionalOptions)</AdditionalOptions>
+      <StringPooling>true</StringPooling>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(LUALIBNAME);ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName).dll</OutputFile>
-      <AdditionalLibraryDirectories>$(LUALIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>G:\render\luasocket\src;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
